@@ -1,0 +1,23 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.5.4	//
+!_TAG_REVISION_NAME	MCHPTags	//
+!_TAG_REVISION_VERSION	6.0.1	//
+DIO::GPIO2	C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c	11;"	d	line:11	file:
+GODONE::GO_DONE	C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c	16;"	d	line:16	file:
+Inicializa	C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c	39;"	f	line:39
+Press	C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c	18;"	v	line:18
+X	C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c	18;"	v	line:18
+_XTAL_FREQ::20000000	C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c	4;"	d	line:4	file:
+delayms::(time)__delay_ms(time)	C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c	6;"	d	line:6	file:
+delayus::(time)__delay_us(time)	C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c	5;"	d	line:5	file:
+estado	C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c	18;"	v	line:18
+i	C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c	67;"	l	line:67
+kTRISIO::0b11000001	C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c	10;"	d	line:10	file:
+main	C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c	65;"	f	line:65	signature:(void)
+uchar::unsignedchar	C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c	13;"	d	line:13	file:
+uint::unsignedint	C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c	14;"	d	line:14	file:
+ulong::unsignedlong	C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c	15;"	d	line:15	file:
