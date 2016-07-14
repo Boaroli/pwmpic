@@ -1,0 +1,796 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.82 build 9453 
+                                                                                               Thu Jul 14 11:08:12 2016
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 9453
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 9453"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	12F675
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           # 8 "C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c"
+    43                           	psect config,class=CONFIG,delta=2 ;#
+    44                           # 8 "C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c"
+    45  2007  318A               	dw 0x318A ;#
+    46                           	FNCALL	_main,_Inicializa
+    47                           	FNROOT	_main
+    48                           	FNCALL	intlevel1,_ISR
+    49                           	global	intlevel1
+    50                           	FNROOT	intlevel1
+    51                           	global	_Press
+    52                           	global	_X1
+    53                           	global	_X2
+    54                           	global	_Y
+    55                           	global	_estado
+    56                           	global	_altx
+    57                           	global	_TMR1
+    58                           psect	text159,local,class=CODE,delta=2
+    59                           global __ptext159
+    60  0000                     __ptext159:
+    61  000E                     _TMR1	set	14
+    62                           	global	_ADRESH
+    63  001E                     _ADRESH	set	30
+    64                           	global	_ADFM
+    65  00FF                     _ADFM	set	255
+    66                           	global	_ADON
+    67  00F8                     _ADON	set	248
+    68                           	global	_CARRY
+    69  0018                     _CARRY	set	24
+    70                           	global	_CHS0
+    71  00FA                     _CHS0	set	250
+    72                           	global	_CHS1
+    73  00FB                     _CHS1	set	251
+    74                           	global	_GIE
+    75  005F                     _GIE	set	95
+    76                           	global	_GO_DONE
+    77  00F9                     _GO_DONE	set	249
+    78                           	global	_GPIO2
+    79  002A                     _GPIO2	set	42
+    80                           	global	_PEIE
+    81  005E                     _PEIE	set	94
+    82                           	global	_T0IE
+    83  005D                     _T0IE	set	93
+    84                           	global	_T1CKPS0
+    85  0084                     _T1CKPS0	set	132
+    86                           	global	_T1CKPS1
+    87  0085                     _T1CKPS1	set	133
+    88                           	global	_TMR1IF
+    89  0060                     _TMR1IF	set	96
+    90                           	global	_TMR1ON
+    91  0080                     _TMR1ON	set	128
+    92                           	global	_VCFG
+    93  00FE                     _VCFG	set	254
+    94                           	global	_ADRESL
+    95  009E                     _ADRESL	set	158
+    96                           	global	_ANSEL
+    97  009F                     _ANSEL	set	159
+    98                           	global	_EEADR
+    99  009B                     _EEADR	set	155
+   100                           	global	_EECON1
+   101  009C                     _EECON1	set	156
+   102                           	global	_EECON2
+   103  009D                     _EECON2	set	157
+   104                           	global	_EEDATA
+   105  009A                     _EEDATA	set	154
+   106                           	global	_TRISIO
+   107  0085                     _TRISIO	set	133
+   108                           	global	_WPU
+   109  0095                     _WPU	set	149
+   110                           	global	_RD
+   111  04E0                     _RD	set	1248
+   112                           	global	_TMR1IE
+   113  0460                     _TMR1IE	set	1120
+   114                           	global	_WR
+   115  04E1                     _WR	set	1249
+   116                           	global	_WREN
+   117  04E2                     _WREN	set	1250
+   118                           	file	"Tensao.as"
+   119                           	line	#
+   120                           psect cinit,class=CODE,delta=2
+   121                           global start_initialization
+   122  009E                     start_initialization:
+   123                           
+   124                           psect	bssBANK0,class=BANK0,space=1
+   125                           global __pbssBANK0
+   126  0020                     __pbssBANK0:
+   127  0020                     _Press:
+   128  0020                            ds      2
+   129                           
+   130  0022                     _X1:
+   131  0022                            ds      2
+   132                           
+   133  0024                     _X2:
+   134  0024                            ds      2
+   135                           
+   136  0026                     _Y:
+   137  0026                            ds      2
+   138                           
+   139  0028                     _estado:
+   140  0028                            ds      2
+   141                           
+   142  002A                     _altx:
+   143  002A                            ds      1
+   144                           
+   145                           ; Clear objects allocated to BANK0
+   146                           psect cinit,class=CODE,delta=2
+   147  009E  01A0               	clrf	((__pbssBANK0)+0)&07Fh
+   148  009F  01A1               	clrf	((__pbssBANK0)+1)&07Fh
+   149  00A0  01A2               	clrf	((__pbssBANK0)+2)&07Fh
+   150  00A1  01A3               	clrf	((__pbssBANK0)+3)&07Fh
+   151  00A2  01A4               	clrf	((__pbssBANK0)+4)&07Fh
+   152  00A3  01A5               	clrf	((__pbssBANK0)+5)&07Fh
+   153  00A4  01A6               	clrf	((__pbssBANK0)+6)&07Fh
+   154  00A5  01A7               	clrf	((__pbssBANK0)+7)&07Fh
+   155  00A6  01A8               	clrf	((__pbssBANK0)+8)&07Fh
+   156  00A7  01A9               	clrf	((__pbssBANK0)+9)&07Fh
+   157  00A8  01AA               	clrf	((__pbssBANK0)+10)&07Fh
+   158                           psect cinit,class=CODE,delta=2
+   159                           global end_of_initialization
+   160                           
+   161                           ;End of C runtime variable initialization code
+   162                           
+   163  00A9                     end_of_initialization:
+   164  00A9  0183               clrf status
+   165  00AA  2814               ljmp _main	;jump to C main() function
+   166                           psect	cstackCOMMON,class=COMMON,space=1
+   167                           global __pcstackCOMMON
+   168  0000                     __pcstackCOMMON:
+   169                           	global	??_Inicializa
+   170  0000                     ??_Inicializa:	; 0 bytes @ 0x0
+   171                           psect	cstackBANK0,class=BANK0,space=1
+   172                           global __pcstackBANK0
+   173  002B                     __pcstackBANK0:
+   174                           	global	?_ISR
+   175  002B                     ?_ISR:	; 0 bytes @ 0x0
+   176                           	global	??_ISR
+   177  002B                     ??_ISR:	; 0 bytes @ 0x0
+   178                           	global	?_Inicializa
+   179  002B                     ?_Inicializa:	; 0 bytes @ 0x0
+   180                           	global	?_main
+   181  002B                     ?_main:	; 0 bytes @ 0x0
+   182  002B                     	ds	4
+   183                           	global	??_main
+   184  002F                     ??_main:	; 0 bytes @ 0x4
+   185  002F                     	ds	2
+   186                           	global	main@Y
+   187  0031                     main@Y:	; 2 bytes @ 0x6
+   188  0031                     	ds	2
+   189 ;;Data sizes: Strings 0, constant 0, data 0, bss 11, persistent 0 stack 0
+   190 ;;Auto spaces:   Size  Autos    Used
+   191 ;; COMMON           0      0       0
+   192 ;; BANK0           62      8      19
+   193                           
+   194 ;;
+   195 ;; Pointer list with targets:
+   196                           
+   197                           
+   198                           
+   199 ;;
+   200 ;; Critical Paths under _main in COMMON
+   201 ;;
+   202 ;;   None.
+   203 ;;
+   204 ;; Critical Paths under _ISR in COMMON
+   205 ;;
+   206 ;;   None.
+   207 ;;
+   208 ;; Critical Paths under _main in BANK0
+   209 ;;
+   210 ;;   None.
+   211 ;;
+   212 ;; Critical Paths under _ISR in BANK0
+   213 ;;
+   214 ;;   None.
+   215                           
+   216 ;;
+   217 ;;Main: autosize = 0, tempsize = 2, incstack = 0, save=0
+   218 ;;
+   219                           
+   220 ;;
+   221 ;;Call Graph Tables:
+   222 ;;
+   223 ;; ---------------------------------------------------------------------------------
+   224 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   225 ;; ---------------------------------------------------------------------------------
+   226 ;; (0) _main                                                 6     6      0      46
+   227 ;;                                              4 BANK0      4     4      0
+   228 ;;                         _Inicializa
+   229 ;; ---------------------------------------------------------------------------------
+   230 ;; (1) _Inicializa                                           0     0      0       0
+   231 ;; ---------------------------------------------------------------------------------
+   232 ;; Estimated maximum stack depth 1
+   233 ;; ---------------------------------------------------------------------------------
+   234 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   235 ;; ---------------------------------------------------------------------------------
+   236 ;; (2) _ISR                                                  4     4      0       0
+   237 ;;                                              0 BANK0      4     4      0
+   238 ;; ---------------------------------------------------------------------------------
+   239 ;; Estimated maximum stack depth 2
+   240 ;; ---------------------------------------------------------------------------------
+   241                           
+   242 ;; Call Graph Graphs:
+   243                           
+   244 ;; _main (ROOT)
+   245 ;;   _Inicializa
+   246 ;;
+   247 ;; _ISR (ROOT)
+   248 ;;
+   249                           
+   250 ;; Address spaces:
+   251                           
+   252 ;;Name               Size   Autos  Total    Cost      Usage
+   253 ;;BITCOMMON            0      0       0       0        0.0%
+   254 ;;EEDATA              80      0       0       0        0.0%
+   255 ;;NULL                 0      0       0       0        0.0%
+   256 ;;CODE                 0      0       0       0        0.0%
+   257 ;;BITSFR0              0      0       0       1        0.0%
+   258 ;;SFR0                 0      0       0       1        0.0%
+   259 ;;COMMON               0      0       0       1        0.0%
+   260 ;;BITSFR1              0      0       0       2        0.0%
+   261 ;;SFR1                 0      0       0       2        0.0%
+   262 ;;STACK                0      0       1       2        0.0%
+   263 ;;BITBANK0            3E      0       0       3        0.0%
+   264 ;;BANK0               3E      8      13       4       30.6%
+   265 ;;ABS                  0      0      13       5        0.0%
+   266 ;;DATA                 0      0      14       6        0.0%
+   267                           
+   268                           	global	_main
+   269                           psect	maintext,global,class=CODE,delta=2
+   270                           global __pmaintext
+   271  0014                     __pmaintext:
+   272                           
+   273 ;; *************** function _main *****************
+   274 ;; Defined at:
+   275 ;;		line 79 in file "C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c"
+   276 ;; Parameters:    Size  Location     Type
+   277 ;;		None
+   278 ;; Auto vars:     Size  Location     Type
+   279 ;;  Y               2    6[BANK0 ] int 
+   280 ;;  i               2    0        int 
+   281 ;; Return value:  Size  Location     Type
+   282 ;;		None               void
+   283 ;; Registers used:
+   284 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+   285 ;; Tracked objects:
+   286 ;;		On entry : 17F/0
+   287 ;;		On exit  : 0/0
+   288 ;;		Unchanged: 0/0
+   289 ;; Data sizes:     COMMON   BANK0
+   290 ;;      Params:         0       0
+   291 ;;      Locals:         0       2
+   292 ;;      Temps:          0       2
+   293 ;;      Totals:         0       4
+   294 ;;Total ram usage:        4 bytes
+   295 ;; Hardware stack levels required when called:    2
+   296 ;; This function calls:
+   297 ;;		_Inicializa
+   298 ;; This function is called by:
+   299 ;;		Startup code after reset
+   300 ;; This function uses a non-reentrant model
+   301 ;;
+   302                           psect	maintext
+   303                           	file	"C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c"
+   304                           	line	79
+   305                           	global	__size_of_main
+   306  0047                     	__size_of_main	equ	__end_of_main-_main
+   307                           	
+   308  0014                     _main:	
+   309                           	opt	stack 6
+   310                           ; Regs used in _main: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+   311                           	line	81
+   312                           	
+   313  0014                     l2066:	
+   314                           ;Main.c: 80: int i;
+   315                           ;Main.c: 81: Inicializa();
+   316  0014  2086               	fcall	_Inicializa
+   317  0015  2816               	goto	l2068
+   318                           	line	82
+   319                           ;Main.c: 82: while (1)
+   320                           	
+   321  0016                     l364:	
+   322                           	line	84
+   323                           	
+   324  0016                     l2068:	
+   325                           ;Main.c: 83: {
+   326                           ;Main.c: 84: GO_DONE = 1;
+   327  0016  1283               	bcf	status, 5	;RP0=0, select bank0
+   328  0017  149F               	bsf	(249/8),(249)&7
+   329                           	line	85
+   330                           ;Main.c: 85: while(GO_DONE);
+   331  0018  2819               	goto	l365
+   332                           	
+   333  0019                     l366:	
+   334                           	
+   335  0019                     l365:	
+   336  0019  189F               	btfsc	(249/8),(249)&7
+   337  001A  281C               	goto	u2281
+   338  001B  281D               	goto	u2280
+   339  001C                     u2281:
+   340  001C  2819               	goto	l365
+   341  001D                     u2280:
+   342  001D  281E               	goto	l2070
+   343                           	
+   344  001E                     l367:	
+   345                           	line	86
+   346                           	
+   347  001E                     l2070:	
+   348                           ;Main.c: 86: int Y = (((ADRESH<<8)+ ADRESL));
+   349  001E  081E               	movf	(30),w	;volatile
+   350  001F  00AF               	movwf	(??_main+0)+0
+   351  0020  01B0               	clrf	(??_main+0)+0+1
+   352  0021  082F               	movf	(??_main+0)+0,w
+   353  0022  00B0               	movwf	(??_main+0)+1
+   354  0023  01AF               	clrf	(??_main+0)+0
+   355  0024  1683               	bsf	status, 5	;RP0=1, select bank1
+   356  0025  081E               	movf	(158)^080h,w	;volatile
+   357  0026  1283               	bcf	status, 5	;RP0=0, select bank0
+   358  0027  072F               	addwf	0+(??_main+0)+0,w
+   359  0028  00B1               	movwf	(main@Y)
+   360  0029  3000               	movlw	0
+   361  002A  1803               	skipnc
+   362  002B  3001               	movlw	1
+   363  002C  0730               	addwf	1+(??_main+0)+0,w
+   364  002D  00B2               	movwf	1+(main@Y)
+   365                           	line	87
+   366                           	
+   367  002E                     l2072:	
+   368                           ;Main.c: 87: altx = 1;
+   369  002E  01AA               	clrf	(_altx)
+   370  002F  1403               	bsf	status,0
+   371  0030  0DAA               	rlf	(_altx),f
+   372                           	line	88
+   373                           	
+   374  0031                     l2074:	
+   375                           ;Main.c: 88: X1 = Y;
+   376  0031  0832               	movf	(main@Y+1),w
+   377  0032  01A3               	clrf	(_X1+1)
+   378  0033  07A3               	addwf	(_X1+1)
+   379  0034  0831               	movf	(main@Y),w
+   380  0035  01A2               	clrf	(_X1)
+   381  0036  07A2               	addwf	(_X1)
+   382                           
+   383                           	line	91
+   384                           	
+   385  0037                     l2076:	
+   386                           ;Main.c: 91: GO_DONE = 1;
+   387  0037  149F               	bsf	(249/8),(249)&7
+   388                           	line	92
+   389                           ;Main.c: 92: while(GO_DONE);
+   390  0038  2839               	goto	l368
+   391                           	
+   392  0039                     l369:	
+   393                           	
+   394  0039                     l368:	
+   395  0039  189F               	btfsc	(249/8),(249)&7
+   396  003A  283C               	goto	u2291
+   397  003B  283D               	goto	u2290
+   398  003C                     u2291:
+   399  003C  2839               	goto	l368
+   400  003D                     u2290:
+   401  003D  283E               	goto	l2078
+   402                           	
+   403  003E                     l370:	
+   404                           	line	93
+   405                           	
+   406  003E                     l2078:	
+   407                           ;Main.c: 93: int Y = (((ADRESH<<8)+ ADRESL));
+   408  003E  081E               	movf	(30),w	;volatile
+   409  003F  00AF               	movwf	(??_main+0)+0
+   410  0040  01B0               	clrf	(??_main+0)+0+1
+   411  0041  082F               	movf	(??_main+0)+0,w
+   412  0042  00B0               	movwf	(??_main+0)+1
+   413  0043  01AF               	clrf	(??_main+0)+0
+   414  0044  1683               	bsf	status, 5	;RP0=1, select bank1
+   415  0045  081E               	movf	(158)^080h,w	;volatile
+   416  0046  1283               	bcf	status, 5	;RP0=0, select bank0
+   417  0047  072F               	addwf	0+(??_main+0)+0,w
+   418  0048  00B1               	movwf	(main@Y)
+   419  0049  3000               	movlw	0
+   420  004A  1803               	skipnc
+   421  004B  3001               	movlw	1
+   422  004C  0730               	addwf	1+(??_main+0)+0,w
+   423  004D  00B2               	movwf	1+(main@Y)
+   424                           	line	94
+   425                           	
+   426  004E                     l2080:	
+   427                           ;Main.c: 94: altx = 2;
+   428  004E  3002               	movlw	(02h)
+   429  004F  00AF               	movwf	(??_main+0)+0
+   430  0050  082F               	movf	(??_main+0)+0,w
+   431  0051  00AA               	movwf	(_altx)
+   432                           	line	95
+   433                           	
+   434  0052                     l2082:	
+   435                           ;Main.c: 95: X2 = Y;
+   436  0052  0832               	movf	(main@Y+1),w
+   437  0053  01A5               	clrf	(_X2+1)
+   438  0054  07A5               	addwf	(_X2+1)
+   439  0055  0831               	movf	(main@Y),w
+   440  0056  01A4               	clrf	(_X2)
+   441  0057  07A4               	addwf	(_X2)
+   442                           
+   443  0058  2816               	goto	l2068
+   444                           	line	102
+   445                           	
+   446  0059                     l371:	
+   447                           	line	82
+   448  0059  2816               	goto	l2068
+   449                           	
+   450  005A                     l372:	
+   451                           	line	103
+   452                           	
+   453  005A                     l373:	
+   454                           	global	start
+   455  005A  280F               	ljmp	start
+   456                           	opt stack 0
+   457                           GLOBAL	__end_of_main
+   458  005B                     	__end_of_main:
+   459 ;; =============== function _main ends ============
+   460                           
+   461                           	signat	_main,88
+   462                           	global	_Inicializa
+   463                           psect	text160,local,class=CODE,delta=2
+   464                           global __ptext160
+   465  0086                     __ptext160:
+   466                           
+   467 ;; *************** function _Inicializa *****************
+   468 ;; Defined at:
+   469 ;;		line 53 in file "C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c"
+   470 ;; Parameters:    Size  Location     Type
+   471 ;;		None
+   472 ;; Auto vars:     Size  Location     Type
+   473 ;;		None
+   474 ;; Return value:  Size  Location     Type
+   475 ;;		None               void
+   476 ;; Registers used:
+   477 ;;		wreg, status,2
+   478 ;; Tracked objects:
+   479 ;;		On entry : 0/0
+   480 ;;		On exit  : 0/0
+   481 ;;		Unchanged: 0/0
+   482 ;; Data sizes:     COMMON   BANK0
+   483 ;;      Params:         0       0
+   484 ;;      Locals:         0       0
+   485 ;;      Temps:          0       0
+   486 ;;      Totals:         0       0
+   487 ;;Total ram usage:        0 bytes
+   488 ;; Hardware stack levels used:    1
+   489 ;; Hardware stack levels required when called:    1
+   490 ;; This function calls:
+   491 ;;		Nothing
+   492 ;; This function is called by:
+   493 ;;		_main
+   494 ;; This function uses a non-reentrant model
+   495 ;;
+   496                           psect	text160
+   497                           	file	"C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c"
+   498                           	line	53
+   499                           	global	__size_of_Inicializa
+   500  0018                     	__size_of_Inicializa	equ	__end_of_Inicializa-_Inicializa
+   501                           	
+   502  0086                     _Inicializa:	
+   503                           	opt	stack 6
+   504                           ; Regs used in _Inicializa: [wreg+status,2]
+   505                           	line	54
+   506                           	
+   507  0086                     l2036:	
+   508                           ;Main.c: 54: TRISIO = 0b11000001;
+   509  0086  30C1               	movlw	(0C1h)
+   510  0087  1683               	bsf	status, 5	;RP0=1, select bank1
+   511  0088  0085               	movwf	(133)^080h	;volatile
+   512                           	line	55
+   513                           	
+   514  0089                     l2038:	
+   515                           ;Main.c: 55: WPU = 0;
+   516  0089  0195               	clrf	(149)^080h	;volatile
+   517                           	line	58
+   518                           	
+   519  008A                     l2040:	
+   520                           ;Main.c: 58: T0IE = 0;
+   521  008A  128B               	bcf	(93/8),(93)&7
+   522                           	line	61
+   523                           	
+   524  008B                     l2042:	
+   525                           ;Main.c: 61: TMR1ON = 1;
+   526  008B  1283               	bcf	status, 5	;RP0=0, select bank0
+   527  008C  1410               	bsf	(128/8),(128)&7
+   528                           	line	62
+   529                           	
+   530  008D                     l2044:	
+   531                           ;Main.c: 62: TMR1IE = 1;
+   532  008D  1683               	bsf	status, 5	;RP0=1, select bank1
+   533  008E  140C               	bsf	(1120/8)^080h,(1120)&7
+   534                           	line	63
+   535                           	
+   536  008F                     l2046:	
+   537                           ;Main.c: 63: T1CKPS1 = 0;
+   538  008F  1283               	bcf	status, 5	;RP0=0, select bank0
+   539  0090  1290               	bcf	(133/8),(133)&7
+   540                           	line	64
+   541                           	
+   542  0091                     l2048:	
+   543                           ;Main.c: 64: T1CKPS0 = 0;
+   544  0091  1210               	bcf	(132/8),(132)&7
+   545                           	line	66
+   546                           	
+   547  0092                     l2050:	
+   548                           ;Main.c: 66: VCFG = 0;
+   549  0092  131F               	bcf	(254/8),(254)&7
+   550                           	line	67
+   551                           	
+   552  0093                     l2052:	
+   553                           ;Main.c: 67: ADON = 1;
+   554  0093  141F               	bsf	(248/8),(248)&7
+   555                           	line	68
+   556                           	
+   557  0094                     l2054:	
+   558                           ;Main.c: 68: ADFM = 1;
+   559  0094  179F               	bsf	(255/8),(255)&7
+   560                           	line	69
+   561                           	
+   562  0095                     l2056:	
+   563                           ;Main.c: 69: ANSEL = 0b00101000;
+   564  0095  3028               	movlw	(028h)
+   565  0096  1683               	bsf	status, 5	;RP0=1, select bank1
+   566  0097  009F               	movwf	(159)^080h	;volatile
+   567                           	line	71
+   568                           	
+   569  0098                     l2058:	
+   570                           ;Main.c: 71: CHS1 = 0;
+   571  0098  1283               	bcf	status, 5	;RP0=0, select bank0
+   572  0099  119F               	bcf	(251/8),(251)&7
+   573                           	line	72
+   574                           	
+   575  009A                     l2060:	
+   576                           ;Main.c: 72: CHS0 = 0;
+   577  009A  111F               	bcf	(250/8),(250)&7
+   578                           	line	74
+   579                           	
+   580  009B                     l2062:	
+   581                           ;Main.c: 74: GIE = 1;
+   582  009B  178B               	bsf	(95/8),(95)&7
+   583                           	line	75
+   584                           	
+   585  009C                     l2064:	
+   586                           ;Main.c: 75: PEIE = 1;
+   587  009C  170B               	bsf	(94/8),(94)&7
+   588                           	line	76
+   589                           	
+   590  009D                     l361:	
+   591  009D  0008               	return
+   592                           	opt stack 0
+   593                           GLOBAL	__end_of_Inicializa
+   594  009E                     	__end_of_Inicializa:
+   595 ;; =============== function _Inicializa ends ============
+   596                           
+   597                           	signat	_Inicializa,88
+   598                           	global	_ISR
+   599                           psect	text161,local,class=CODE,delta=2
+   600                           global __ptext161
+   601  005B                     __ptext161:
+   602                           
+   603 ;; *************** function _ISR *****************
+   604 ;; Defined at:
+   605 ;;		line 40 in file "C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c"
+   606 ;; Parameters:    Size  Location     Type
+   607 ;;		None
+   608 ;; Auto vars:     Size  Location     Type
+   609 ;;		None
+   610 ;; Return value:  Size  Location     Type
+   611 ;;		None               void
+   612 ;; Registers used:
+   613 ;;		wreg, status,2, status,0
+   614 ;; Tracked objects:
+   615 ;;		On entry : 0/0
+   616 ;;		On exit  : 0/0
+   617 ;;		Unchanged: 0/0
+   618 ;; Data sizes:     COMMON   BANK0
+   619 ;;      Params:         0       0
+   620 ;;      Locals:         0       0
+   621 ;;      Temps:          0       4
+   622 ;;      Totals:         0       4
+   623 ;;Total ram usage:        4 bytes
+   624 ;; Hardware stack levels used:    1
+   625 ;; This function calls:
+   626 ;;		Nothing
+   627 ;; This function is called by:
+   628 ;;		Interrupt level 1
+   629 ;; This function uses a non-reentrant model
+   630 ;;
+   631                           psect	text161
+   632                           	file	"C:\Users\Lucas Boaroli\Desktop\Tensão\Main.c"
+   633                           	line	40
+   634                           	global	__size_of_ISR
+   635  002B                     	__size_of_ISR	equ	__end_of_ISR-_ISR
+   636                           	
+   637  005B                     _ISR:	
+   638                           	opt	stack 6
+   639                           ; Regs used in _ISR: [wreg+status,2+status,0]
+   640                           psect	intentry,class=CODE,delta=2
+   641                           global __pintentry
+   642  0004                     __pintentry:
+   643                           global interrupt_function
+   644  0004                     interrupt_function:
+   645                           	global saved_w
+   646  005E                     	saved_w	set	btemp+0
+   647  0004  00DE               	movwf	saved_w
+   648  0005  0E03               	swapf	status,w
+   649  0006  1283               	bcf	status, 5	;RP0=0, select bank0
+   650  0007  00AB               	movwf	(??_ISR+0)
+   651  0008  0804               	movf	fsr0,w
+   652  0009  00AC               	movwf	(??_ISR+1)
+   653  000A  080A               	movf	pclath,w
+   654  000B  00AD               	movwf	(??_ISR+2)
+   655  000C  085F               	movf	btemp+1,w
+   656  000D  00AE               	movwf	(??_ISR+3)
+   657  000E  285B               	ljmp	_ISR
+   658                           psect	text161
+   659                           	line	41
+   660                           	
+   661  005B                     i1l2026:	
+   662                           ;Main.c: 41: if(TMR1IF){
+   663  005B  1C0C               	btfss	(96/8),(96)&7
+   664  005C  285E               	goto	u226_21
+   665  005D  285F               	goto	u226_20
+   666  005E                     u226_21:
+   667  005E  287B               	goto	i1l358
+   668  005F                     u226_20:
+   669                           	line	42
+   670                           	
+   671  005F                     i1l2028:	
+   672                           ;Main.c: 42: TMR1IF = 0;
+   673  005F  100C               	bcf	(96/8),(96)&7
+   674                           	line	43
+   675                           	
+   676  0060                     i1l2030:	
+   677                           ;Main.c: 43: GPIO2 = !GPIO2;
+   678  0060  3004               	movlw	1<<((42)&7)
+   679  0061  0685               	xorwf	((42)/8),f
+   680                           	line	44
+   681                           ;Main.c: 44: if(altx==10)
+   682  0062  082A               	movf	(_altx),w
+   683  0063  3A0A               	xorlw	0Ah
+   684  0064  1D03               	skipz
+   685  0065  2867               	goto	u227_21
+   686  0066  2868               	goto	u227_20
+   687  0067                     u227_21:
+   688  0067  2871               	goto	i1l2034
+   689  0068                     u227_20:
+   690                           	line	45
+   691                           	
+   692  0068                     i1l2032:	
+   693                           ;Main.c: 45: TMR1 = 65535-1223+X2;
+   694  0068  0824               	movf	(_X2),w
+   695  0069  3E38               	addlw	low(0FB38h)
+   696  006A  008E               	movwf	(14)	;volatile
+   697  006B  0825               	movf	(_X2+1),w
+   698  006C  1803               	skipnc
+   699  006D  3E01               	addlw	1
+   700  006E  3EFB               	addlw	high(0FB38h)
+   701  006F  008F               	movwf	1+(14)	;volatile
+   702  0070  287B               	goto	i1l358
+   703                           	line	46
+   704                           	
+   705  0071                     i1l356:	
+   706                           	line	47
+   707                           	
+   708  0071                     i1l2034:	
+   709                           ;Main.c: 46: else
+   710                           ;Main.c: 47: TMR1 = 65535-1223+X1;
+   711  0071  0822               	movf	(_X1),w
+   712  0072  3E38               	addlw	low(0FB38h)
+   713  0073  008E               	movwf	(14)	;volatile
+   714  0074  0823               	movf	(_X1+1),w
+   715  0075  1803               	skipnc
+   716  0076  3E01               	addlw	1
+   717  0077  3EFB               	addlw	high(0FB38h)
+   718  0078  008F               	movwf	1+(14)	;volatile
+   719  0079  287B               	goto	i1l358
+   720                           	
+   721  007A                     i1l357:	
+   722  007A  287B               	goto	i1l358
+   723                           	line	49
+   724                           	
+   725  007B                     i1l355:	
+   726                           	line	50
+   727                           	
+   728  007B                     i1l358:	
+   729  007B  082E               	movf	(??_ISR+3),w
+   730  007C  00DF               	movwf	btemp+1
+   731  007D  082D               	movf	(??_ISR+2),w
+   732  007E  008A               	movwf	pclath
+   733  007F  082C               	movf	(??_ISR+1),w
+   734  0080  0084               	movwf	fsr0
+   735  0081  0E2B               	swapf	(??_ISR+0)^00h,w
+   736  0082  0083               	movwf	status
+   737  0083  0EDE               	swapf	saved_w,f
+   738  0084  0E5E               	swapf	saved_w,w
+   739  0085  0009               	retfie
+   740                           	opt stack 0
+   741                           GLOBAL	__end_of_ISR
+   742  0086                     	__end_of_ISR:
+   743 ;; =============== function _ISR ends ============
+   744                           
+   745                           	signat	_ISR,88
+   746                           psect	text162,local,class=CODE,delta=2
+   747                           global __ptext162
+   748  0000                     __ptext162:
+   749                           	global	btemp
+   750  005E                     	btemp set 05Eh
+   751                           
+   752                           	DABS	1,94,2	;btemp
+   753                           	global	wtemp0
+   754  005E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.82 build 9453 
+Symbol Table                                                                                   Thu Jul 14 11:08:12 2016
+
+                   _Y 0026                    _X1 0022                    _X2 0024                    _RD 04E0  
+                  _WR 04E1                   l361 009D                   l370 003E                   l371 0059  
+                 l372 005A                   l364 0016                   l373 005A                   l365 0019  
+                 l366 0019                   l367 001E                   l368 0039                   l369 0039  
+                 _GIE 005F                   _ISR 005B                   _WPU 0095                   fsr0 0004  
+                ?_ISR 002B                  l2040 008A                  l2050 0092                  l2042 008B  
+                l2060 009A                  l2052 0093                  l2044 008D                  l2036 0086  
+                l2062 009B                  l2054 0094                  l2046 008F                  l2038 0089  
+                l2070 001E                  l2064 009C                  l2056 0095                  l2048 0091  
+                l2080 004E                  l2072 002E                  l2058 0098                  l2082 0052  
+                l2074 0031                  l2066 0014                  l2076 0037                  l2068 0016  
+                l2078 003E                  _ADFM 00FF                  _ADON 00F8                  _CHS0 00FA  
+                _CHS1 00FB                  _T0IE 005D                  u2280 001D                  u2281 001C  
+                u2290 003D                  u2291 003C                  _PEIE 005E                  _VCFG 00FE  
+                _TMR1 000E                  _WREN 04E2                  _altx 002A                  _main 0014  
+                btemp 005E                  start 000F                 ??_ISR 002B                 ?_main 002B  
+               _EEADR 009B                 _CARRY 0018                 _ANSEL 009F                 _GPIO2 002A  
+               i1l355 007B                 i1l356 0071                 i1l357 007A                 i1l358 007B  
+               _Press 0020                 main@Y 0031                 pclath 000A                 status 0003  
+               wtemp0 005E            _Inicializa 0086          __end_of_main 005B                ??_main 002F  
+              _ADRESH 001E                _ADRESL 009E                _EEDATA 009A                _EECON1 009C  
+              _EECON2 009D                i1l2030 0060                i1l2032 0068                i1l2034 0071  
+              i1l2026 005B                i1l2028 005F                u226_20 005F                u226_21 005E  
+              u227_20 0068                u227_21 0067                _TMR1IE 0460                _TMR1IF 0060  
+              _TMR1ON 0080                _TRISIO 0085                _estado 0028                saved_w 005E  
+         ?_Inicializa 002B        __pcstackCOMMON 0000            __pbssBANK0 0020            __pmaintext 0014  
+          __pintentry 0004               _T1CKPS0 0084               _T1CKPS1 0085               _GO_DONE 00F9  
+ __size_of_Inicializa 0018          __size_of_ISR 002B  end_of_initialization 00A9          ??_Inicializa 0000  
+ start_initialization 009E           __end_of_ISR 0086    __end_of_Inicializa 009E         __pcstackBANK0 002B  
+           __ptext160 0086             __ptext161 005B             __ptext162 0000             __ptext159 0000  
+   interrupt_function 0004         __size_of_main 0047              intlevel1 0000  
