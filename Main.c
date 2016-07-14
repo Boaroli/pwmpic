@@ -1,5 +1,6 @@
 #include <pic.h>
-//#define interrupt
+//#define interrupt 123
+
 
 #define _XTAL_FREQ 		20000000
 #define delayus(time) 	__delay_us(time)
