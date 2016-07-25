@@ -1,5 +1,5 @@
 #include <pic.h>
-//#define interrupt 123
+//#define interrupt 123rrr
 
 
 #define _XTAL_FREQ 		20000000
